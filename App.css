@@ -1,0 +1,113 @@
+*{
+  box-sizing: border-box;
+}
+
+body{
+  background-color:#f5f6ff;
+}
+
+.containerx{
+  padding:10px;
+ /* background-color: red;*/ 
+  max-width: 830px;
+  margin:50px auto;
+}
+
+.btnsub{
+  border:none;
+  padding:7px 15px;
+  font-size:18px ;
+  border-radius: 5px; 
+  cursor:pointer;
+}
+
+.btn-add{
+  background: #194064;
+  color:white; 
+  padding: 10px;
+}
+
+
+.addContainerx{
+  position: absolute;
+  background-color:rgb(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fox{
+  width: 300px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 5px 5px 10px rgb(0,0,0,0.2);
+  border-radius: 5px;
+  border :2px solid black;
+}
+
+.fo .inputx{
+  font-size: 18px;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.fo .labelx{
+  font-size: 18px;
+}
+
+.btnsub{
+  background-color: royalblue;
+  color:white;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+.close-btnx{
+  margin-left: auto;
+  font-size: 18px;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(248, 5, 5);
+  cursor: pointer;
+}
+
+.tableContainerx{
+  margin-top: 50px;
+  border: 1px solid black;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.2); 
+  border-radius: 5px;
+}
+
+
+
+
+.tableContainerx .tablex .theadx .trx{
+  background-color: rgb(168, 130, 130);
+}
+ 
+.tableContainerx .tablex .theadx .trx .thx,
+.tableContainerx .tablex .tbodyx .trx .tdx
+{
+  min-width: 200px;
+  padding: 7px;
+  text-align: center;
+  border: 2px solid black;
+}
+
+.tableContainerx .tablex .tbodyx .trx .tdx{
+    border-bottom: 1px solid black;
+}
+
+.btn-edit,.btn-delete{
+  font-size: 16px;
+  padding: 5px 10px;
+  margin: 0px 10px;
+}
+.btn-edit{
+  background-color: yellow;
+  border-radius: 20%;
+}
+
