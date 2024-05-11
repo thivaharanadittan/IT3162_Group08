@@ -10,7 +10,6 @@ import EmployeeSignup from "./components/EmployeeManagement/EmployeeSignup";
 
 import EmployeeProfileView from "./components/EmployeeManagement/EmployeeProfileView";
 import EmployeeViewDetails from "./components/EmployeeManagement/EmployeeViewDetails";
-import EmployeeEdit from "./components/EmployeeManagement/EmployeeEdit";
 import EmployeeAdminView from "./components/EmployeeManagement/EmployeeAdminView";
 import EmployeeAdminUpdate from "./components/EmployeeManagement/EmployeeAdminUpdate";
 
@@ -33,9 +32,8 @@ function App() {
           <Route path="/employeemanagement" element={<EmployeeHome />} />
           <Route path="/profile-view" element={<EmployeeProfileView />} />
           <Route path="/view-details" element={<EmployeeViewDetails />} />
-          <Route path="/employee-edit:id" element={<EmployeeEdit />} />
           <Route path="/admin-view" element={<EmployeeAdminView />} />
-          <Route path="/admin-update" element={<EmployeeAdminUpdate />} />
+          <Route path="/admin-update/:userId" element={<EmployeeAdminUpdate />} />
           <Route path="/salary-management" element={<EmployeeSalaryManagement />} />
           <Route path="/employee-leaving" element={<EmployeeLeaveManagement />} />
          

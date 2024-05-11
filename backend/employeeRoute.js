@@ -29,6 +29,7 @@ router.get("/getEmployeeByPosition", cors(), async (req, res) => {
     }
 });
 
+/*
 router.put("/updateEmployee/:id", async (req, res) => {
     const id = req.params.id;
     const updatedEmployeeData = req.body;
@@ -44,7 +45,61 @@ router.put("/updateEmployee/:id", async (req, res) => {
       console.error("Error updating employee:", error);
       res.status(500).json({ error: "Internal server error" });
     }
-  });
+  });*/
+
+  // GET employee by ID
+router.get('/getUser/:userId', async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const user = await collection.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+
+/*
+// UPDATE employee by ID
+router.put("/updateEmployee/:id", async (req, res) => {
+  const { id } = req.params;
+  const formData = req.body;
+  
+  try {
+    const updatedEmployee = await collection.findByIdAndUpdate(id, formData, { new: true });
+    if (!updatedEmployee) {
+      return res.status(404).json({ message: "Employee not found" });
+    }
+    res.json(updatedEmployee);
+  } catch (error) {
+    console.error("Error updating employee:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});*/
+
+router.put("update/:id", async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const userData = req.body;
+
+    // Find the user by ID and update the data
+    const updatedUser = await collection.findByIdAndUpdate(userId, userData, {
+      new: true,
+    });
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    return res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error("Error updating user:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
   router.post("/login", async (req, res) => {
     const { empId, password } = req.body;
@@ -68,6 +123,7 @@ router.put("/updateEmployee/:id", async (req, res) => {
   });
 
   router.post("/signup", async (req, res) => {
+    
   
     const {
       email,
@@ -131,4 +187,52 @@ router.put("/updateEmployee/:id", async (req, res) => {
       res.json("fail");
     }
   });
+
+
+
+
+/*
+router.post('/update-salary', async (req, res) => {
+    const { empId, totalSalary } = req.body;
+
+    try {
+        // Find the employee by empId and update the total salary
+        const updatedEmployee = await collection.findOneAndUpdate({ empId }, { $push: { salaries: { totalSalary } } }, { new: true });
+
+        if (!updatedEmployee) {
+            return res.status(404).json({ error: 'Employee not found' });
+        }
+
+        return res.json(updatedEmployee);
+    } catch (error) {
+        console.error('Failed to update salary:', error);
+        return res.status(500).json({ error: 'Failed to update salary' });
+    }
+});
+*/
+
+router.post('/update-salary', async (req, res) => {
+    const { empId, totalSalary,year,month } = req.body;
+
+    try {
+        // Find the employee by empId and update the total salary
+        const updatedEmployee = await collection.findOneAndUpdate({ empId }, { $push: { salaries: { totalSalary } } }, { new: true });
+
+        if (!updatedEmployee) {
+            return res.status(404).json({ error: 'Employee not found' });
+        }
+
+        return res.json(updatedEmployee);
+    } catch (error) {
+        console.error('Failed to update salary:', error);
+        return res.status(500).json({ error: 'Failed to update salary' });
+    }
+});
+
+
+
+
+
+
+
   module.exports = router;
