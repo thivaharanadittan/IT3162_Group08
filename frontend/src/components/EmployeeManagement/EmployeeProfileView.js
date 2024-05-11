@@ -15,9 +15,10 @@ export default function EmployeeProfileView() {
 
   return (
     <div className="selected-employee-details">
-      <h2>{selectedEmployee.empId}  Details</h2>
+      <h2> {selectedEmployee.empId}  Details</h2>
 
       <table border="1">
+        <tbody>
         <tr>
           <td>Employee Id: </td>
           <td>{selectedEmployee.empId}</td>
@@ -60,6 +61,19 @@ export default function EmployeeProfileView() {
           <td>Position: </td>
           <td>{selectedEmployee.selectPosition}</td>
         </tr>
+        <tr>
+          <td>Salary: </td>
+          <td>
+            <ul>
+              {selectedEmployee.salaries.map((salary, index) => (
+                <li key={index}>
+                  Year-{salary.year} Month- {salary.month} Salary- {salary.totalSalary}
+                </li>
+              ))}
+            </ul>
+          </td>
+        </tr>
+        </tbody>
       </table>
     </div>
   );

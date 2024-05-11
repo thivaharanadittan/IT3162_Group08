@@ -55,6 +55,39 @@ const newSchema = new mongoose.Schema({
     type: String,
     required:true,
   },
+  salaries: [
+    {
+      year: {
+        type: Number,
+        required: true,
+      },
+      month: {
+        type: Number,
+        required: true,
+      },
+      
+      baseSalary: {
+        type: Number,
+        required: true,
+      },
+      overtimeHours: {
+        type: Number,
+        required: true,
+      },
+      overtimeRate: {
+        type: Number,
+        required: true,
+      },
+      leaveDays: {
+        type: Number,
+        required: true,
+      },
+      totalSalary: {
+        type: Number,
+        required: true,
+      },
+    },
+  ],
   
  
 });
