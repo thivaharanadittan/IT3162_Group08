@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import {FaSearch} from "react-icons/fa"
-import './css/SearchBar.css'
+import './css/EmployeeSearchBar.css'
 import {  Link } from "react-router-dom";
 
 export const EmployeeSearchBar = ({data,onSearch})=> {
@@ -16,11 +16,7 @@ export const EmployeeSearchBar = ({data,onSearch})=> {
 
     return (
       <div className="input-wrapper">
-        <div className="login-div">
-        <Link to="/signup">
-          <button className="login-btn">Sign Up</button>
-        </Link>
-        </div>
+       
         <input
           placeholder="Type to search.."
           value={searchInput}

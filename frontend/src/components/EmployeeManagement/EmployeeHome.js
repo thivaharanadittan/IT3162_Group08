@@ -23,22 +23,7 @@ function EmployeeHome() {
   console.log("Location State:", location.state);
 
   useEffect(() => {
-    // Fetch CEO details
-    /*axios
-      //.get("http://localhost:8000/getEmployeeByPosition", {
-      .get("api/employee/getEmployeeByPosition", {
-        params: {
-          position: "ceo",
-        },
-      })
-      .then((response) => {
-        const ceoDetails = response.data; // Take all items
-        console.log("CEO Details", ceoDetails);
-        setCEODetails(ceoDetails);
-      })
-      .catch((error) => {
-        console.error("Error fetching CEO details:", error);
-      });*/
+    
 
 
       // Fetch CEO details
@@ -69,31 +54,31 @@ function EmployeeHome() {
 
   const handleButtonClick = (position, details) => {
     // Navigate to ViewDetails.js with personDetails as state
-    navigate("/view-details", { state: { position, details } });
+    navigate("/employee-view-details", { state: { position, details } });
   };
 
   return (
     <div className="homepage">
       <div className="homepage-button-div">
-        <Link to="/login">
+        <Link to="/employee-login">
           <button className="homepage-login-btn">Login Page</button>
         </Link>
        
       </div>
       <div className="homepage-form-container-home">
-        <h2>Directory Details</h2>
+        <h2 className="homepage-h2">Directory Details</h2>
         {ceoDetails.map((detail, index) => (
           <div
             key={index}
             className="homepage-button-as-div"
             onClick={() => handleButtonClick("ceo", detail)}
           >
-            <button className="homepage-login-button">
-              <div>
+            <button className="homepage-button-details">
+              <div className="homepage-details-div">
                 View CEO Details
-                <p>Name: {detail.firstName + " " + detail.lastName}</p>
-                <p>Email: {detail.email}</p>
-                <p>Address: {detail.address}</p>
+                <p className="homepage-p">Name: {detail.firstName + " " + detail.lastName}</p>
+                <p className="homepage-p" >Email: {detail.email}</p>
+                <p className="homepage-p">Address: {detail.address}</p>
               </div>
             </button>
           </div>
@@ -104,12 +89,12 @@ function EmployeeHome() {
             className="homepage-button-as-div"
             onClick={() => handleButtonClick("manager", detail)}
           >
-            <button className="homepage-login-button">
-              <div>
+            <button className="homepage-button-details">
+              <div className="homepage-details-div">
                 View Manager Details
-                <p>Name: {detail.firstName + " " + detail.lastName}</p>
-                <p>Email: {detail.email}</p>
-                <p>Address: {detail.address}</p>
+                <p className="homepage-p">Name: {detail.firstName + " " + detail.lastName}</p>
+                <p className="homepage-p">Email: {detail.email}</p>
+                <p className="homepage-p">Address: {detail.address}</p>
               </div>
             </button>
           </div>
@@ -120,11 +105,11 @@ function EmployeeHome() {
       
       
       <div>
-        <Link to="/admin-view">
-          <button className="homepage-login-button">View</button>
+        <Link to="/employee-admin-view">
+          <button className="homepage-buttons">View</button>
         </Link>
-        <Link to="/employee-leaving"><button className="homepage-login-button"> LeaveManagement</button></Link>
-        <Link to="/salary-management"><button className="homepage-login-button">SalaryManagement </button></Link>
+        <Link to="/employee-leaving"><button className="homepage-buttons"> LeaveManagement</button></Link>
+        <Link to="/employee-salary-management"><button className="homepage-buttons">SalaryManagement </button></Link>
         
       </div>
 

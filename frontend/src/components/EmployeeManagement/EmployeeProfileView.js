@@ -2,6 +2,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
+import './css/EmployeeProfileView.css'
+
 export default function EmployeeProfileView() {
   const location = useLocation();
   const selectedEmployee = location.state ? location.state.employeeData : null;
@@ -13,55 +15,73 @@ export default function EmployeeProfileView() {
     return <div>No employee selected.</div>;
   }
 
-  return (
-    <div className="selected-employee-details">
-      <h2> {selectedEmployee.empId}  Details</h2>
+  const logOut = () => {
+		window.localStorage.clear();
+		window.location.href = "/employee-home";
+	};
 
-      <table border="1">
-        <tbody>
-        <tr>
-          <td>Employee Id: </td>
-          <td>{selectedEmployee.empId}</td>
+  return (
+    <>
+    <button onClick={logOut} className="logout-button">Logout</button>
+    <h2 className="profile-view-h2"> {selectedEmployee.empId}  Details</h2>
+
+    <div className="profile-view-container">
+      
+
+      <table border="1" cellPadding="10"  cellSpacing="10" className="profile-view-table">
+        <tbody className="profile-view-tbody">
+        <tr className="profile-view-tr">
+          <td className="profile-view-td">Employee Id: </td>
+          <td className="profile-view-td">{selectedEmployee.empId}</td>
         </tr>
-        <tr>
-          <td>Email: </td>
-          <td>{selectedEmployee.email}</td>
+        <tr className="profile-view-tr">
+          <td className="profile-view-td">Email: </td>
+          <td className="profile-view-td">{selectedEmployee.email}</td>
         </tr>
-        <tr>
-          <td>Full Name: </td>
-          <td>
+        <tr className="profile-view-tr">
+          <td className="profile-view-td">Full Name: </td>
+          <td className="profile-view-td">
             {selectedEmployee.firstName + " " + selectedEmployee.lastName}
           </td>
         </tr>
-        <tr>
-          <td>NIC Number: </td>
-          <td>{selectedEmployee.nicNumber}</td>
+        <tr className="profile-view-tr">
+          <td className="profile-view-td">NIC Number: </td>
+          <td className="profile-view-td">{selectedEmployee.nicNumber}</td>
         </tr>
-        <tr>
+        <tr  className="profile-view-tr">
           <td>Address: </td>
           <td>{selectedEmployee.address}</td>
         </tr>
-        <tr>
+        <tr  className="profile-view-tr">
           <td>Date Of Birth: </td>
           <td>{selectedEmployee.dob}</td>
         </tr>
-        <tr>
+        <tr  className="profile-view-tr">
           <td>Gender: </td>
           <td>{selectedEmployee.gender}</td>
         </tr>
-        <tr>
+        <tr  className="profile-view-tr">
           <td>Bank: </td>
           <td>{selectedEmployee.selectedBank}</td>
         </tr>
-        <tr>
+        <tr className="profile-view-tr">
           <td>Account Number: </td>
           <td>{selectedEmployee.accNum}</td>
         </tr>
-        <tr>
+        <tr className="profile-view-tr">
           <td>Position: </td>
           <td>{selectedEmployee.selectPosition}</td>
         </tr>
-        <tr>
+        <tr className="profile-view-tr">
+          <td>Mobile Number: </td>
+          <td>{selectedEmployee.mobileNumber}</td>
+        </tr>
+        <tr className="profile-view-tr">
+          <td>Joining Date: </td>
+          <td>{selectedEmployee.joiningDate}</td>
+        </tr>
+
+        <tr className="profile-view-tr">
           <td>Salary: </td>
           <td>
             <ul>
@@ -76,5 +96,6 @@ export default function EmployeeProfileView() {
         </tbody>
       </table>
     </div>
+    </>
   );
 }

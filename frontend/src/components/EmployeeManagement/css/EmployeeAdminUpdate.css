@@ -2,8 +2,10 @@ body{
     background: #1f242d;
     
 }
+
 .form-container {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     flex-direction: row;
@@ -15,8 +17,9 @@ body{
     margin: auto;
 }
 
-.left-container,
-.right-container {
+.left-container
+{
+   
     max-width: 50%;
     margin: 0;
     padding: 4rem;
@@ -44,7 +47,6 @@ body{
     align-items: center;
     flex-direction: row;
     gap: 0 2rem;
-    
 }
 
 .form-field input[type="text"],
@@ -58,14 +60,6 @@ select {
     outline: 1px solid gray;
 }
 
-.form-input{
-    min-width: 200px;
-   max-width:400px;
-}
-label{
-    font-weight: 650;
-}
-
 .submit-btn {
     color: white;
     background-color: #252525;
@@ -77,11 +71,6 @@ label{
     float: right;
     margin: 2rem 0;
     font-weight: bold;
-}
-
-.submit-btn:hover{
-    background-color: rgb(1, 8, 20);
-    color: rgb(255, 255, 255);
 }
 
 .login-div{
@@ -115,7 +104,7 @@ label{
     border-radius: 4px;
     border: none;
     outline: 1px solid grey;
-    float: bottom;
+    float: right;
     margin: 2rem 2rem;
     font-weight: bold;
 
