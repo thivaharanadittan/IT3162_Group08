@@ -104,14 +104,7 @@ function EmployeeHome() {
       
       
       
-      <div>
-        <Link to="/employee-admin-view">
-          <button className="homepage-buttons">View</button>
-        </Link>
-        <Link to="/employee-leaving"><button className="homepage-buttons"> LeaveManagement</button></Link>
-        <Link to="/employee-salary-management"><button className="homepage-buttons">SalaryManagement </button></Link>
-        
-      </div>
+      
 
 
 
