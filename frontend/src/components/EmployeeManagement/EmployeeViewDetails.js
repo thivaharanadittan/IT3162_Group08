@@ -2,7 +2,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-import "./css/ViewDetails.css";
+import "./css/EmployeeViewDetails.css";
 
 function EmployeeViewDetails() {
   const location = useLocation();
@@ -11,14 +11,14 @@ function EmployeeViewDetails() {
   const { position, details } = location.state || {};
 
   return (
-    <div className="view-details">
+    <div className="view-details-container">
       {details ? (
         <>
-          <h2>{position} Profile Details</h2>
+          <h2 className="view-details-h2">{position} Profile Details</h2>
           
-          <p>Name: {details.firstName + " " + details.lastName}</p>
-          <p>Email: {details.email}</p>
-          <p>Address: {details.address}</p>
+          <p className="view-details-p">Name: {details.firstName + " " + details.lastName}</p>
+          <p className="view-details-p">Email: {details.email}</p>
+          <p className="view-details-p">Address: {details.address}</p>
         </>
       ) : (
         <p>No details available</p>
@@ -29,29 +29,4 @@ function EmployeeViewDetails() {
 
 export default EmployeeViewDetails;
 
-/*import React from "react";
-import { useLocation } from "react-router-dom";
-import View from "./View";
 
-function ViewDetails() {
-  const location = useLocation();
-  const { position, ceoDetails, managerDetails } = location.state || {};
-  const details = position === "ceo" ? ceoDetails : position === "manager" ? managerDetails : null;
-
-  return (
-    <div className="view-details">
-      {details ? (
-        <>
-          <h2>{position} Profile Details</h2>
-          <p>Name: {details.name}</p>
-          <p>Email: {details.email}</p>
-          <p>Address: {details.address}</p>
-        </>
-      ) : (
-        <p>No details available</p>
-      )}
-    </div>
-  );
-}
-
-export default ViewDetails;*/

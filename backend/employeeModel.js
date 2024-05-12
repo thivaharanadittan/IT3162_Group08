@@ -55,6 +55,15 @@ const newSchema = new mongoose.Schema({
     type: String,
     required:true,
   },
+  mobileNumber: {
+    type: Number,
+    required:true,
+  },
+  joiningDate: {
+    type: Date,
+    required:true,
+  },
+  
   salaries: [
     {
       year: {

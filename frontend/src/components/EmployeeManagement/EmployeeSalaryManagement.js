@@ -73,6 +73,8 @@ export default EmployeeSalaryManagement;*/
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import './css/EmployeeSalary.css';
+
 const EmployeeSalaryManagement = () => {
     const [empId, setEmpId] = useState('');
     const [baseSalary, setBaseSalary] = useState('');

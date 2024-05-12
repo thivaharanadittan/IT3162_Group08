@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import "./css/Login.css";
+import "./css/EmployeeLogin.css";
 
 function EmployeeLogin() {
   const history = useNavigate();
@@ -26,9 +26,9 @@ function EmployeeLogin() {
       } else {
         // Redirect to admin or employee
         if (empId === "admin" && password === "admin@123") {
-          history("/admin-view");
+          history("/employee-admin-view");
         } else {
-          history("/profile-view", {
+          history("/employee-profile-view", {
             state: { employeeData: response.data },
           });
         }
@@ -61,7 +61,7 @@ function EmployeeLogin() {
 
               <input  type="submit"  onClick={handleLogin} className="login-submit-btn" />
 
-              <Link to="/employeemanagement/">
+              <Link to="/employee-home/">
                 <button className="login-submit-btn">Back</button>
               </Link>
             </form>

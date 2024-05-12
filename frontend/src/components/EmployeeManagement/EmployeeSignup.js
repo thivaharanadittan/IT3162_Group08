@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 
-import "./css/Signup.css";
+import "./css/EmployeeSignup.css";
 
 function EmployeeSignup() {
   const history = useNavigate();
@@ -19,6 +19,8 @@ function EmployeeSignup() {
     selectPosition: "",
     nicNumber: "",
     gender: "",
+    mobileNumber: "",
+    joiningDate: "",
   });
 
  const handleChange = (e) => {
@@ -54,7 +56,7 @@ function EmployeeSignup() {
           if (res.data === "exist") {
             alert("User already exists");
           } else if (res.data === "notexist") {
-            history("/login");
+            history("/employee-login");
           }
         })
         .catch((e) => {
@@ -69,7 +71,7 @@ function EmployeeSignup() {
   return (
     <>
       <div className="login-div">
-        <Link to="/login">
+        <Link to="/employee-login">
           <button className="login-btn"> Login</button>
         </Link>
       </div>
@@ -79,13 +81,17 @@ function EmployeeSignup() {
 
       <div className="form-container">
         <div className="left-container">
-          <h3>Personal Details</h3>
+          <h3 className="form-h3">Personal Details</h3>
 
           <form action="POST" onSubmit={submit} >
   <div>
     <div className="form-field">
       <label>Employee Id:</label>
       <input type="text" name="empId" value={formData.empId} onChange={handleChange} placeholder="Employee Id" className="form-input"/>
+    </div>
+     <div className="form-field">
+      <label>Password:</label>
+      <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" className="form-input"/>
     </div>
     <div className="form-field">
 
@@ -117,11 +123,9 @@ function EmployeeSignup() {
       Male:<input type="radio" value="Male" name="genderGroup" checked={formData.gender === "Male"} onChange={handleRadioChange} />
       Female:<input type="radio" value="Female" name="genderGroup" checked={formData.gender === "Female"} onChange={handleRadioChange} />
     </div>
+
     
-    <div className="form-field">
-      <label>Password:</label>
-      <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" className="form-input"/>
-    </div>
+   
     <div className="form-field">
       <label>Position:</label>
       <select name="selectPosition" value={formData.selectPosition} onChange={handlePosition} className="form-input">
@@ -162,14 +166,12 @@ function EmployeeSignup() {
   <input type="submit" className="submit-btn" />
   {/*<input type="reset" value="Reset" className="reset-btn" />*/}
 
-  <Link to="/employeemanagement">
-          <button className="home-button">
-              Home
-          </button>  
-            </Link>
+          <Link to="/employee-home">
+            <button className="home-button">Home</button>
+          </Link>
 
   
-</form>
+      </form>
 
         </div>
 

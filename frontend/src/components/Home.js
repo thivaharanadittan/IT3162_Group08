@@ -10,7 +10,7 @@ export default function Home() {
 
     
     <div>
-      <Link to={"/employeemanagement/"}> Employee Management </Link>
+      <Link to={"/employee-home/"}> Employee Management </Link>
     </div>
 
     </>
