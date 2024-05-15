@@ -1,50 +1,33 @@
-// import './App.css'
-
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-
-import Home from "./components/Home";
-import EmployeeHome from "./components/EmployeeManagement/EmployeeHome";
-import EmployeeLogin from "./components/EmployeeManagement/EmployeeLogin";
-import EmployeeSignup from "./components/EmployeeManagement/EmployeeSignup";
-import EmployeeProfileView from "./components/EmployeeManagement/EmployeeProfileView";
-import EmployeeViewDetails from "./components/EmployeeManagement/EmployeeViewDetails";
-import EmployeeAdminView from "./components/EmployeeManagement/EmployeeAdminView";
-import EmployeeAdminUpdate from "./components/EmployeeManagement/EmployeeAdminUpdate";
-import EmployeeSalaryManagement from "./components/EmployeeManagement/EmployeeSalaryManagement";
-import EmployeeLeaveManagement from "./components/EmployeeManagement/EmployeeLeaveManagement";
-import EmployeeNavbar from "./components/EmployeeManagement/EmployeeNavbar";
-import EmployeeLogout from "./components/EmployeeManagement/EmployeeLogout";
-import { EmployeeSearchBar } from "./components/EmployeeManagement/EmployeeSearchBar";
-
-
-
-
-import { useState } from "react";
+import React from 'react';
+import './App.css';
+import NavBar from './components/NavBar';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomeScreen from './screens/HomeScreen';
+import BookingScreen from './screens/BookingScreen';
+import Register from './screens/Register';
+import Login from './screens/Login';
+import ProfileScreen from './screens/ProfileScreen';
+import LandingScreen from './screens/LandingScreen';
 
 function App() {
   return (
-    <div className="App">
-      <Router>
+    <div className='App'>
+      <NavBar />
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/employee-login" element={<EmployeeLogin />} />
-          <Route path="/employee-signup" element={<EmployeeSignup />} />
-          <Route path="/employee-home" element={<EmployeeHome />} />
-          <Route path="/employee-profile-view" element={<EmployeeProfileView />} />
-          <Route path="/employee-view-details" element={<EmployeeViewDetails />} />
-          <Route path="/employee-admin-view" element={<EmployeeAdminView />} />
-          <Route path="/employee-admin-update/" element={<EmployeeAdminUpdate />} />
-          <Route path="/employee-salary-management" element={<EmployeeSalaryManagement />} />
-          <Route path="/employee-leaving" element={<EmployeeLeaveManagement />} />
-          <Route path="/employee-navbar" element={<EmployeeNavbar />} />
-          <Route path="/employee-logout" element={<EmployeeLogout />} />
-          <Route path="/employee-search" element={<EmployeeSearchBar />} />
-         
+          {/* Use 'element' prop with the component imported correctly */}
+          <Route path='/home' element={<HomeScreen />} />
+          
+          <Route path='/book/:roomid/:fromDate/:toDate' element={<BookingScreen />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/profile' element={<ProfileScreen />} />
+          <Route path='/' element={<LandingScreen />} />
+          
         </Routes>
-      </Router>
+      </BrowserRouter>
     </div>
-  );
+  )
 }
 
 export default App;
