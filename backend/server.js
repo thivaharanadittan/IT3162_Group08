@@ -1,24 +1,36 @@
-const express = require('express');
-const db = require('./database/db');
-const bookingRoutes = require('./routes/booking');
-const transportationRoutes = require('./routes/transportation');
-const vehicleRoutes = require('./routes/vehicle');
-require('dotenv').config();
+const express= require("express");
 
+const app=express();
 const cors = require('cors');
-
-
-
-
-const app = express();
 app.use(cors());
-app.use(express.json());
+const fileUpload =require('express-fileupload');
+app.use(fileUpload());
+const dbConfig=require("./db");
+app.use(express.json())
 
-app.use('/api' , bookingRoutes)
+//room reservation
+const roomsRoute=require('./routes/roomsRoute');
+const usersRoute=require('./routes/userRoute');
+const bookingroute=require('./routes/bookingRoomRoute');
+const employeeRoute=require('./routes/employeeRoute');
+
+app.use('/api/rooms',roomsRoute);
+app.use('/api/users',usersRoute);
+app.use('/api/bookings',bookingroute);
+
+app.use('/api/employee',employeeRoute);
+//*Transportation
+{/*const bookingTransportRoutes = require('./routes/bookingTransport');
+const transportationRoutes = require('./routes/transportation');
+const vehicleRoutes = require('./routes/vehicleTransport');
+
+app.use('/api' , bookingTransportRoutes)
 app.use('/api',transportationRoutes);
 app.use('/api',vehicleRoutes)
+*/}
+//Inventory
+const inventoryRoute=require('./routes/inventoryRoute');
+app.use('/api/inventory',inventoryRoute);
 
-const PORT = 5000;
-app.listen(PORT , () => {
-    console.log(`Server is running on ${PORT}`);
-});
+const port = process.env.PORT || 5000;
+app.listen(port, ()=> console.log("Server is running"));
