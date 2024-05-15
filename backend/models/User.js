@@ -1,17 +1,26 @@
-// models/User.js
-const connectToDatabase = require('../employeeDb');
+const mongoose = require('mongoose');
 
-async function createUser(user) {
-  const db = await connectToDatabase();
-  const users = db.collection('users');
+const userSchema = mongoose.Schema({
+    name : {
+        type: String,
+        required: true
+    },
+    email : {
+        type: String,
+        required: true
+    },
+    password : {
+        type: String,
+        required: true
+    },
+    EaseAdmin : {
+        type: Boolean,
+        default:false
+    }
+},{
+    timestamps:true,
+})
 
-  try {
-    const result = await users.insertOne(user);
-    console.log(`User inserted with ID ${result.insertedId}`);
-  } catch (error) {
-    console.error('Error inserting user', error);
-    throw error;
-  }
-}
+const userModal = mongoose.model('users',userSchema)
 
-module.exports = createUser;
+module.exports=userModal
