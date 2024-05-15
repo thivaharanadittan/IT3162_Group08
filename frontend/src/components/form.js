@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import { InputGroup, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import {Col} from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import Alert from 'react-bootstrap/Alert';
@@ -39,55 +39,54 @@ function FeedbackForm() {
         setCheckBoxChecked(temp.filter(item => item !== value));
     };
 
-    const validateForm = ()=>{
+    const validateForm = () => {
         setErrorMsg('Please enter the value for the above field');
 
         [...document.getElementsByClassName('alert-danger')].forEach(element => {
             element.style.display = "none";
         });
-        if(nm_value===''){
+        if (nm_value === '') {
             document.getElementById('name_er').style.display = "block";
         }
-        else if(em_value===''){
+        else if (em_value === '') {
             document.getElementById('email_er').style.display = "block";
         }
-        else if(!em_value.includes('.com')||(!em_value.includes('@'))){
+        else if (!em_value.includes('.com') || (!em_value.includes('@'))) {
             document.getElementById('email_er').style.display = "block";
             setErrorMsg('Invalid Email')
         }
-        else if(!ph_value){
+        else if (!ph_value) {
             document.getElementById('phone_er').style.display = "block";
         }
-        else if(ph_value.length <13){
+        else if (ph_value.length < 13) {
             document.getElementById('phone_er').style.display = "block";
             setErrorMsg('Invalid Phone number')
         }
-        else if(checked_val.length < Object.keys(feedback_type).length){
+        else if (checked_val.length < Object.keys(feedback_type).length) {
             let keys = Object.keys(feedback_type)
-            checked_val.map((val)=>{
+            checked_val.map((val) => {
                 keys = keys.filter(item => item !== val.split('_')[0])
             })
-            keys.map(val =>{
-                document.getElementById('er_'+val).style.display = "block";
+            keys.map(val => {
+                document.getElementById('er_' + val).style.display = "block";
             })
         }
         else return true;
     };
-    
-    const formSubmit = (e) =>{
+
+    const formSubmit = (e) => {
         e.preventDefault();
-    
-        if (validateForm())
-        {
+
+        if (validateForm()) {
             var existingEntries = JSON.parse(localStorage.getItem("allEntries"));
             var new_id = 0;
-            if(existingEntries == null) existingEntries = [];
-            else{
+            if (existingEntries == null) existingEntries = [];
+            else {
                 let lastentry = existingEntries.slice(-1)[0]
                 new_id = parseInt(lastentry["id"]) + 1;
             }
             var entry = {
-                "id": new_id, 
+                "id": new_id,
                 "email": em_value,
                 "name": nm_value,
                 "phone": ph_value,
@@ -100,10 +99,10 @@ function FeedbackForm() {
             setDisplay(false)
         }
     };
-    
+
 
     const feedback_type = {
-        'fq': 'Food Quality', 
+        'fq': 'Food Quality',
         'ft': 'Food Taste',
         'prc': 'Price',
         'svs': 'Services',
@@ -113,99 +112,99 @@ function FeedbackForm() {
     };
 
     const feedback_opts = ['Excellent', 'Good', 'Fair', 'Bad'];
-    
-    return (
-        
-        <Container>
-            {displayform ? 
-            (<Card>
-                <Card.Header>
-                    <h2>Feedback Form</h2>
-                    <cite title="Source Title">We are committed to providing you with the best
-                        dining experience possible, so we welcome your comments.
-                    </cite>
-                </Card.Header>
-                <Card.Body>
-                    <blockquote className="formheader">
-                    Please provide your feedback so that we can continue to improve our service. 
-                    </blockquote>
-                    
-                </Card.Body>
-                <Container className='content1'>
-                    <Form>
-                        <Row>
-                            <Col>
-                                
-                                <Form.Group className="details" controlId="formBasicEmail">
-                                    <Form.Label className='required-field'>Customer Name</Form.Label>
-                                    <Form.Control type="text" required placeholder="E.g. jon snow" value={nm_value} onChange={e => setNmValue(e.target.value)} />
-                                    
-                                </Form.Group>
-                                <Alert variant='danger' id='name_er'>
-                                    &#9432;{error_msg}
-                                </Alert>
-                            </Col>
-                            <Col>
-                                <Form.Group className="details" controlId="formBasicEmail">
-                                    <Form.Label className='required-field'>Email address</Form.Label>
-                                    <Form.Control type="email" required placeholder="E.g. abc@gmail.com" value={em_value} onChange={e => setEmValue(e.target.value)}/>
-                                </Form.Group>
-                                <Alert variant='danger' id='email_er'>
-                                    &#9432;{error_msg}
-                                </Alert>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Form.Group className="details" controlId="formBasicEmail">
-                                    <Form.Label className='required-field'>Phone</Form.Label>
-                                    <InputGroup>
-                                        <PhoneInput
-                                        placeholder="9999999999"
-                                        value={ph_value}
-                                        onChange={setPhValue}/>
-                                    </InputGroup>
-                                </Form.Group>
-                                <Alert variant='danger' id='phone_er'>
-                                    &#9432;{error_msg}
-                                </Alert>
-                            </Col>
-                            <Col></Col>
-                        </Row>
-                        
-                        <Row>
-                            {Object.keys(feedback_type).map((ty)=>(
-                                <>
-                                    <Col>
-                                        <Form.Group className="details" controlId={ty}>
-                                            <Form.Label className='required-field'>{feedback_type[ty]}</Form.Label>
-                                            <InputGroup>
-                                                <div className="details">
-                                                    {feedback_opts.map((opt,key) => (
-                                                        <Form.Check
-                                                        inline
-                                                        label={opt}
-                                                        name={`${ty}_feedback_opts`}
-                                                        id={`${ty}_${key}`}
-                                                        checked={checked_val.includes(ty+'_'+opt)}
-                                                        onChange={e => handleOnChange(e.target.checked, ty+'_'+opt)}
-                                                        type='checkbox'
-                                                        value={opt}
-                                                        />
-                                                    ))}
-                                                </div>
-                                            </InputGroup>
-                                        </Form.Group>
-                                        <Alert variant='danger' id={`er_${ty}`}>
-                                            &#9432;{error_msg}
-                                        </Alert>
-                                    </Col>
-                                    {((ty === 'qob')|| (ty === 'exp'))? <Row/>: null}
-                                </>
-                                ))}
-                        </Row>
 
-                        <Row>
+    return (
+
+        <Container>
+            {displayform ?
+                (<Card>
+                    <Card.Header>
+                        <h2>Feedback Form</h2>
+                        <cite title="Source Title">We are committed to providing you with the best
+                            dining experience possible, so we welcome your comments.
+                        </cite>
+                    </Card.Header>
+                    <Card.Body>
+                        <blockquote className="formheader">
+                            Please provide your feedback so that we can continue to improve our service.
+                        </blockquote>
+
+                    </Card.Body>
+                    <Container className='content1'>
+                        <Form>
+                            <Row>
+                                <Col>
+
+                                    <Form.Group className="details" controlId="formBasicEmail">
+                                        <Form.Label className='required-field'>Customer Name</Form.Label>
+                                        <Form.Control type="text" required placeholder="E.g. jon snow" value={nm_value} onChange={e => setNmValue(e.target.value)} />
+
+                                    </Form.Group>
+                                    <Alert variant='danger' id='name_er'>
+                                        &#9432;{error_msg}
+                                    </Alert>
+                                </Col>
+                                <Col>
+                                    <Form.Group className="details" controlId="formBasicEmail">
+                                        <Form.Label className='required-field'>Email address</Form.Label>
+                                        <Form.Control type="email" required placeholder="E.g. abc@gmail.com" value={em_value} onChange={e => setEmValue(e.target.value)} />
+                                    </Form.Group>
+                                    <Alert variant='danger' id='email_er'>
+                                        &#9432;{error_msg}
+                                    </Alert>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <Form.Group className="details" controlId="formBasicEmail">
+                                        <Form.Label className='required-field'>Phone</Form.Label>
+                                        <InputGroup>
+                                            <PhoneInput
+                                                placeholder="9999999999"
+                                                value={ph_value}
+                                                onChange={setPhValue} />
+                                        </InputGroup>
+                                    </Form.Group>
+                                    <Alert variant='danger' id='phone_er'>
+                                        &#9432;{error_msg}
+                                    </Alert>
+                                </Col>
+                                <Col></Col>
+                            </Row>
+
+                            <Row>
+                                {Object.keys(feedback_type).map((ty) => (
+                                    <>
+                                        <Col>
+                                            <Form.Group className="details" controlId={ty}>
+                                                <Form.Label className='required-field'>{feedback_type[ty]}</Form.Label>
+                                                <InputGroup>
+                                                    <div className="details">
+                                                        {feedback_opts.map((opt, key) => (
+                                                            <Form.Check
+                                                                inline
+                                                                label={opt}
+                                                                name={`${ty}_feedback_opts`}
+                                                                id={`${ty}_${key}`}
+                                                                checked={checked_val.includes(ty + '_' + opt)}
+                                                                onChange={e => handleOnChange(e.target.checked, ty + '_' + opt)}
+                                                                type='checkbox'
+                                                                value={opt}
+                                                            />
+                                                        ))}
+                                                    </div>
+                                                </InputGroup>
+                                            </Form.Group>
+                                            <Alert variant='danger' id={`er_${ty}`}>
+                                                &#9432;{error_msg}
+                                            </Alert>
+                                        </Col>
+                                        {((ty === 'qob') || (ty === 'exp')) ? <Row /> : null}
+                                    </>
+                                ))}
+                            </Row>
+
+                            <Row>
                                 <Col>
                                     <Form.Group className="details" controlId="customFeedback">
                                         <Form.Label>Custom Feedback</Form.Label>
@@ -214,40 +213,40 @@ function FeedbackForm() {
                                 </Col>
                             </Row>
 
-                        <Button className='button1' style={{ marginTop: '20px' }} onClick={e=>formSubmit(e)}>Submit Review</Button>
-                        
-                        <div className='content1'>
-                            <Button className='button1' onClick={()=>window.location.href='/submissions'}>View Review</Button>
-                        </div>
-                    </Form>
-                </Container>
-            </Card>
-            ):(
-                <Card bg='light' text='dark'>
-                    <Card.Body>
-                        <div  className='content1'>
-                            <div class="circle">
-                            <div class="checkmark"></div>
+                            <Button className='button1' style={{ marginTop: '20px' }} onClick={e => formSubmit(e)}>Submit Review</Button>
+
+                            <div className='content1'>
+                                <Button className='button1' onClick={() => window.location.href = '/submissions'}>View Review</Button>
                             </div>
-                        </div>
-                        <Card.Text>
-                            Thank you for providing the feedback
-                        </Card.Text>
-                        <Form.Text muted>
-                            We will work towards improving your experience
-                        </Form.Text>
-                        <div className='content1'>
-                            <Button className='button1' onClick={()=>window.location.href='/submissions'}>Close</Button>
-                        </div>
-                    </Card.Body>
+                        </Form>
+                    </Container>
                 </Card>
-            )}
-            
+                ) : (
+                    <Card bg='light' text='dark'>
+                        <Card.Body>
+                            <div className='content1'>
+                                <div class="circle">
+                                    <div class="checkmark"></div>
+                                </div>
+                            </div>
+                            <Card.Text>
+                                Thank you for providing the feedback
+                            </Card.Text>
+                            <Form.Text muted>
+                                We will work towards improving your experience
+                            </Form.Text>
+                            <div className='content1'>
+                                <Button className='button1' onClick={() => window.location.href = '/submissions'}>Close</Button>
+                            </div>
+                        </Card.Body>
+                    </Card>
+                )}
+
         </Container>
-        
-       
+
+
     );
-    
+
 }
 
 export default FeedbackForm;
