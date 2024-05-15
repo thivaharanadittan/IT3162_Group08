@@ -1,0 +1,49 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+    }
+	header{
+	margin:0;
+	padding: 0;
+    }
+	.main {  
+	background-image:url("../source/travel.jpg");
+    height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+	.a{
+	display: flex;
+	justify-content: space-between;
+	background-color:rgba(255,255,255,0.4);
+	font-weight: bold;
+	font-family:"Georgia", serif;
+    }
+    .b{
+    position: sticky;
+    top:0;}
+
+	nav ul{margin-left: 150px;
+		   margin-top: 50px;}
+	nav ul li{display: inline;
+		      float:left;}
+.logo{padding-top: 10px;width:100px;height:100px;border-radius: 50%;}
+  nav ul li a{
+       display: block;
+       text-align: center;
+         padding: 10px 50px;
+       text-decoration: none;
+       color: black;}
+  header nav ul li a:hover:not(.active) { background-color:rgb(  43, 96, 222);}
+  .active {
+    background-color:rgb( 48, 144, 199);
+    }
+   .display{
+	display: inline-flex;
+	margin: 30px 40px;}
+   .border{background-color: #fff;}
+   .border p{ font: italic 1.2em "Fira Sans", serif;}
+   .border h1{font-family: Lucida Bright;}
+   .first{margin: 10px 50px;background-color: rgba(218, 223, 225, 1);}
