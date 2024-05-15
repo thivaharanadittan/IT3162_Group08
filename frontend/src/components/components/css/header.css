@@ -1,0 +1,22 @@
+.logo {
+    height: 70px;
+    width: 70px;
+}
+.header {
+    background-color:rgb(128, 105, 105);
+    padding: 10px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .navbar{
+    background-color: rgb(128, 105, 105);
+  }
+  .navbaritem{
+    color: red;
+  }
+  .navbaritem a:hover{
+    color: rgb(172, 28, 28);
+  }
+  

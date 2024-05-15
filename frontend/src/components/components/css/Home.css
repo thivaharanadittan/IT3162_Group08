@@ -1,0 +1,25 @@
+.text{
+	margin-top: 12%;
+	margin-left: 20%;
+	position: absolute;
+	color: white;
+	word-spacing: 2px;
+	letter-spacing: 2px;
+	line-height: 1;
+}
+.text h1{
+	font-size: 70px;
+}
+.text h2{
+	font-size: 40px;
+	text-align: center;
+}
+.span{
+	color: white;
+}
+.fieldset {
+	border: none;
+	background-color: rgba(0, 0, 000, 0);
+	align-items: center;
+	margin-left: 90px;
+}
