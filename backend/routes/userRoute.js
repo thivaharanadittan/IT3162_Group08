@@ -1,7 +1,7 @@
 const express = require("express");
 const router  = express.Router();
 
-const User=require('../models/user')
+const User=require('../models/userModel')
 router.post('/register', async(req,res) =>{
     const newuser=new User(req.body);
 
@@ -20,7 +20,7 @@ router.post('/login', async(req,res) =>{
             const temp = {
                 name : user.name,
                 email : user.email,
-                EaseAdmin : user.EaseAdmin,
+                isAdmin : user.isAdmin,
                 _id : user._id
             }
             res.send(user)

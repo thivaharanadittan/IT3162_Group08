@@ -1,7 +1,7 @@
 const express = require("express");
 const router  = express.Router();
 
-const Room= require('../models/room')
+const Room= require('../models/roomModel')
 
 router.get('/getallrooms',async(req,res) => {
     try {
@@ -21,6 +21,5 @@ router.post('/getroombyid',async(req,res) => {
         return res.status(400).json({message:error});
     }
 });
-
 
 module.exports= router;
