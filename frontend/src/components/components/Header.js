@@ -10,7 +10,7 @@ const Header = () => {
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link navbaritem" href="#">Home </a>
+                            <a class="nav-link navbaritem" href="/">Home </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link navbaritem" href="/about">About</a>
@@ -19,13 +19,13 @@ const Header = () => {
                             <a class="nav-link navbaritem" href="/gallery">Gallery</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link navbaritem" href="/Transportation">Transportation</a>
+                            <a class="nav-link navbaritem" href="/transportationHome">Transportation</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link navbaritem" href='/login'>Room Reservation</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link navbaritem navbaritem" href="/inventory">Directory</a>
+                            <a class="nav-link navbaritem navbaritem" href="/inventory">Inventory</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link navbaritem navbaritem" href="/employee-home">EmployeeManagement</a>
