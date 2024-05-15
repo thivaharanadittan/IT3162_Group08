@@ -1,57 +1,24 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+const db = require('./database/db');
+const bookingRoutes = require('./routes/booking');
+const transportationRoutes = require('./routes/transportation');
+const vehicleRoutes = require('./routes/vehicle');
+require('dotenv').config();
+
+const cors = require('cors');
+
+
+
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+app.use(cors());
+app.use(express.json());
 
+app.use('/api' , bookingRoutes)
+app.use('/api',transportationRoutes);
+app.use('/api',vehicleRoutes)
 
-mongoose.connect('mongodb://localhost:27017/mydatabase', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 5000
-})
-.then(() => console.log('Connected to MongoDB'))
-.catch(err => console.error('Error connecting to MongoDB:', err));
-
-
-const submissionSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  roomNo: String,
-  checkInDate: Date,
-  checkOutDate: Date,
-  complaint: String
-});
-
-
-const Submission = mongoose.model('Submission', submissionSchema);
-
-
-app.use(bodyParser.json());
-
-app.get('/', (req, res) => {
-    res.send('Welcome to the complaint submission system');
-});
-
-app.post('/submit-complaint', (req, res) => {
-    const formData = req.body;
-    console.log('Received form data:', formData);
-    
-  
-    const newSubmission = new Submission(formData);
-    newSubmission.save()
-      .then(() => {
-        console.log('Form data saved to MongoDB');
-        res.status(200).json({ message: 'Complaint submitted successfully!' });
-      })
-      .catch(err => {
-        console.error('Error saving form data:', err);
-        res.status(500).json({ error: 'Failed to submit complaint' });
-      });
-});
-
-
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+const PORT = 5000;
+app.listen(PORT , () => {
+    console.log(`Server is running on ${PORT}`);
 });
